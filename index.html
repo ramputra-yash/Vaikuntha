@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaikuntha</title>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // https://dashboard.emailjs.com/admin/account
+            emailjs.init({
+              publicKey: "oPGUpv67OpoyU41aY",
+            });
+        })();
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+    </style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Plus Jakarta Sans", sans-serif;
+        }
+        body {
+            overflow-x: hidden;
+        }
+        body::-webkit-scrollbar {
+            background: white;
+            width: 10px;
+            border-left: 1px solid #cccccc86;
+        }
+        body::-webkit-scrollbar-thumb {
+            background: #16a34ab5;
+        }
+        nav {
+            z-index: 1000;
+            background: rgb(255, 255, 255);
+            border-bottom: 1px solid #cccccc86;
+        }
+        .links a {
+            transition: .3s;
+            border-bottom: 2px solid transparent;
+        }
+        .links a:hover {
+            border-bottom: 2px solid rgb(0, 229, 0);
+            color: rgb(0, 229, 0);
+        }
+        .menu {
+            height: 36px;
+            width: 35px;
+            position: relative;
+            display: none;
+            z-index: 100;
+        }
+        .menu::before {
+            content: ' ';
+            background: rgb(85, 85, 85);
+            height: 4px;
+            width: 100%;
+            position: absolute;
+            border-radius: 10px;
+            transition: .3s;
+            top: 0;
+            transform: translateY(10px);
+        }
+        .menu.open::before {
+            transform: translateY(16px) rotate(45deg);
+            background: rgba(255, 0, 0, 0.594);
+        }
+        .menu::after {
+            content: ' ';
+            background: rgb(85, 85, 85);
+            height: 4px;
+            width: 100%;
+            position: absolute;
+            border-radius: 10px;
+            bottom: 0;
+            transform: translateY(-10px);
+            transition: .3s;
+        }
+        .menu.open::after {
+            transform: translateY(-16px) rotate(-45deg);
+            background: rgba(255, 0, 0, 0.594);
+        }
+        .feat_box {
+            background: linear-gradient(to bottom, #16A34A, transparent);
+        }
+        .feat_content {
+            display: grid;
+            column-gap: 40px;
+            padding: 20px;
+            row-gap: 20px;
+            grid-template-columns: repeat(4, 1fr);
+        }
+        .feat {
+            background: rgba(238, 238, 238, 0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 10px 10px 20px rgba(0,0,0,.1);
+        }
+        .coursecontainer {
+            columns: 4;
+        }
+        .course {
+            display: block;
+        }
+        .join_btn {
+            transition: .4s;
+        }
+        .join_btn:hover {
+            transform: scale(1.1);
+        }
+        @media (max-width:650px) {
+            nav .menu {
+                display: block;
+            }
+            nav .links {
+                position: absolute;
+                display: flex;
+                flex-direction: column;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(238, 238, 238, 0.99);
+                backdrop-filter: blur(5px);
+                justify-content: center;
+                align-items: center;
+                top: 0;
+                right: -100%;
+                font-size: 30px;
+                transition: .4s;
+                z-index: 99;
+            }
+            nav .links.open {
+                top: 0;
+                right: 0;
+            }
+            nav .links a:hover {
+            border-bottom: 2px solid transparent;
+            color: black;
+            }
+        }
+        @media (max-width:1140px) {
+            .hero .left h1 {
+                font-size: 40px;
+                transition: .5s;
+            }
+            .coursecontainer {
+            columns: 4;
+            }
+            .hero .left p {
+                font-size: 20px;
+                transition: .5s;
+            }
+            .feat_content {
+            display: grid;
+            column-gap: 40px;
+            padding: 20px;
+            grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (max-width:1000px) {
+            .hero .left h1 {
+                font-size: 35px
+            }
+            .coursecontainer {
+            columns: 3;
+            }
+            .hero .left p {
+                font-size: 17px;
+            }
+            .feat_content {
+            display: grid;
+            column-gap: 40px;
+            padding: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width:950px) {
+            .hero {
+                flex-direction: column;
+                transition: .5s;
+            }
+            .coursecontainer {
+            columns: 1;
+            }
+            .hero .left .left_content {
+                margin-left: 20px;
+                margin-top: 100px;
+            }
+            .hero .left h1 {
+                font-size: 30px;
+            }
+            .hero .left p {
+                font-size: 15px;
+                margin-top: 0;
+            }
+            .hero .btns {
+                margin-top: 0;
+            }
+            .hero .right img {
+                width: 350px;
+            }
+            .feat_content {
+            display: grid;
+            column-gap: 40px;
+            padding: 0px;
+            grid-template-columns: repeat(1, 1fr);
+            }
+            .social h1 {
+                font-size: 40px;
+            }
+            .footer button {
+                font-size: 40px;
+                padding: 15px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main bg-zinc-200/50 w-[100vw] h-[auto]">
+        <nav class="w-full fixed flex items-center justify-between px-8 h-[80px]">
+            <div class="logo">
+                <img class="w-[120px]" src="https://scontent.fdel1-4.fna.fbcdn.net/v/t39.30808-6/442507654_122150483900194336_6329930322712553768_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=5f2048&_nc_ohc=_12uJ5URKCwQ7kNvgHP49C3&_nc_ht=scontent.fdel1-4.fna&oh=00_AYDh-bj0WHWKAtqENRHA3NnSULnInvazCmRQFnSOGREPcQ&oe=66573CCF" alt="logo">
+            </div>
+            <div class="links flex gap-10 font-semibold text-zinc-500 text-lg">
+                <a href="#">Home</a>
+                <a href="#courses">Courses</a>
+                <a href="#about">About</a>
+                <a href="#social">Social</a>
+            </div>
+            <div class="menu"></div>
+        </nav>
+
+        <a href="https://wa.me/9990152824?text=Hello%20Sir!%20I%20want%20to%20join%20your%20computer%20classes%20for%20my%20great%20future" class="whatsapp fixed bottom-3 right-3 z-[10000] text-5xl h-[70px] text-green-600 w-[70px] flex items-center justify-center bg-zinc-100/90 rounded-full shadow-xl">
+            <ion-icon name="logo-whatsapp"></ion-icon>
+        </a>
+
+        <div class="hero flex h-screen w-full">
+            <div class="flex items-start justify-center flex-col w-full h-full left">
+                <div class="left_content ml-[80px] flex flex-col gap-4">
+                    <h1 class="text-6xl text-zinc-700 font-bold">Unlock your Potential</h1>
+                    <h1 class="text-6xl text-zinc-700 font-bold">with <span class="text-green-600">Vaikuntha</span></h1>
+                    <p class="text-xl mt-4 text-zinc-500">At Vainkuntha Computer Institute, we are dedicated to shaping the future of technology by providing top-notch education and training in the ever-evolving field of computer fields.</p>
+                    <div class="btns flex mt-4 items-center gap-6">
+                        <a class="bg-green-600 text-white text-lg px-5 py-2" href="#">Join Us</a>
+                        <a class="text-lg px-5 flex items-center justify-center gap-4 py-2 transition-all bg-zinc-200/50" href="#">Explore</a>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full flex items-center justify-center overflow-hidden h-full right">
+                <img class="w-[550px]" src="https://ramputra-yash.github.io/Vaikunth/website.png" alt="website">
+            </div>
+        </div>
+
+        <div class="features w-full h-[auto] p-5">
+            <div class="feat_box p-8 w-full h-full rounded-[40px]">
+                <h1 class="text-5xl font-bold text-white">Our Features.</h1>
+                <div class="feat_content mt-6 w-full h-[auto]">
+                    <div class="feat p-4 flex gap-4 flex-col items-center w-full h-[auto]">
+                        <ion-icon class="text-8xl text-green-600" name="checkmark-circle-outline"></ion-icon>
+                        <h1 class="text-xl font-semibold text-zinc-800">Comprehensive Course</h1>
+                        <p class="text-zinc-500 text-center">Vaikuntha Computer Education offers a comprehensive curriculum covering various aspects of computer science and technology. From basic computer skills to advanced programming languages and software applications.</p>
+                    </div>
+                    <div class="feat p-4 flex gap-4 flex-col items-center w-full h-[auto]">
+                        <ion-icon class="text-8xl text-green-600" name="checkmark-circle-outline"></ion-icon>
+                        <h1 class="text-xl font-semibold text-zinc-800">Learning Experience</h1>
+                        <p class="text-zinc-500 text-center">We believe in the power of hands-on learning. Our classes provide practical, interactive sessions where students get to apply theoretical knowledge in real-world scenarios. Through projects, assignments.</p>
+                    </div>
+                    <div class="feat p-4 flex gap-4 flex-col items-center w-full h-[auto]">
+                        <ion-icon class="text-8xl text-green-600" name="checkmark-circle-outline"></ion-icon>
+                        <h1 class="text-xl font-semibold text-zinc-800">Expert Faculty Guidance</h1>
+                        <p class="text-zinc-500 text-center"> At Vaikuntha Computer Education, we have a team of experienced and qualified faculty members who are passionate about teaching and dedicated to student success. Our instructors provide personalized attention.</p>
+                    </div>
+                    <div class="feat p-4 flex gap-4 flex-col items-center w-full h-[auto]">
+                        <ion-icon class="text-8xl text-green-600" name="checkmark-circle-outline"></ion-icon>
+                        <h1 class="text-xl font-semibold text-zinc-800">Flexible Learning Options</h1>
+                        <p class="text-zinc-500 text-center">We understand that each student has unique learning preferences and schedules. Therefore, we offer flexible learning options such as online classes, weekend batches, and customized training programs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="courses" class="coursesbox w-full h-[auto]flex flex-col p-8">
+            <h1 class="text-5xl font-bold text-center text-green-600 border-b-[3px] px-4 py-2 w-[fit-content] border-green-600">All Courses.</h1>
+            <div class="coursecontainer w-full p-4 h-[auto] mt-4">
+                <div class="course rounded-xl flex flex-col gap-2 p-4 w-[100%] h-[fit-content]">
+                    <img class="w-full" src="https://ramputra-yash.github.io/Vaikunth/basic.jpg" alt="">
+                </div>
+                <div class="course rounded-xl flex flex-col gap-2 p-4 w-[100%] h-[fit-content]">
+                    <img class="w-full" src="https://ramputra-yash.github.io/Vaikunth/graphic.jpg" alt="">
+                </div>
+                <div class="course rounded-xl flex flex-col gap-2 p-4 w-[100%] h-[fit-content]">
+                    <img class="w-full" src="https://ramputra-yash.github.io/Vaikunth/illustrator.jpg" alt="">
+                </div>
+                <div class="course rounded-xl flex flex-col gap-2 p-4 w-[100%] h-[fit-content]">
+                    <img class="w-full" src="https://ramputra-yash.github.io/Vaikunth/tally.jpg" alt="">
+                </div>
+                <div class="course rounded-xl flex flex-col gap-2 p-4 w-[100%] h-[fit-content]">
+                    <img class="w-full" src="https://ramputra-yash.github.io/Vaikunth/busy.jpg" alt="">
+                </div>
+                <div class="course rounded-xl flex flex-col gap-2 p-4 w-[100%] h-[fit-content]">
+                    <img class="w-full" src="https://ramputra-yash.github.io/Vaikunth/html.jpg" alt="">
+                </div>
+                <div class="course rounded-xl flex flex-col gap-2 p-4 w-[100%] h-[fit-content]">
+                    <img class="w-full" src="https://ramputra-yash.github.io/Vaikunth/css.jpg" alt="">
+                </div>
+                <div class="course rounded-xl flex flex-col gap-2 p-4 w-[100%] h-[fit-content]">
+                    <img class="w-full" src="https://ramputra-yash.github.io/Vaikunth/js.jpg" alt="">
+                </div>
+                <div class="course rounded-xl flex flex-col gap-2 p-4 w-[100%] h-[fit-content]">
+                    <img class="w-full" src="https://ramputra-yash.github.io/Vaikunth/nodejs.jpg" alt="">
+                </div>
+                <div class="course rounded-xl flex flex-col gap-2 p-4 w-[100%] h-[fit-content]">
+                    <img class="w-full" src="https://ramputra-yash.github.io/Vaikunth/reactjs.jpg" alt="">
+                </div>
+                <div class="course rounded-xl flex flex-col gap-2 p-4 w-[100%] h-[fit-content]">
+                    <img class="w-full" src="https://ramputra-yash.github.io/Vaikunth/threejs.jpg" alt="">
+                </div>
+                <div class="course rounded-xl flex flex-col gap-2 p-4 w-[100%] h-[fit-content]">
+                    <img class="w-full" src="https://i.pinimg.com/564x/a3/d0/66/a3d0661341b751a6168a64016d02776a.jpg" alt="">
+                </div>
+                <div class="course rounded-xl flex flex-col gap-2 p-4 w-[100%] h-[fit-content]">
+                    <img class="w-full" src="https://media.istockphoto.com/id/1047570732/vector/english.jpg?s=612x612&w=0&k=20&c=zgafUJxCytevU-ZRlrZlTEpw3mLlS_HQTIOHLjaSPPM=" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div id="about" class="about flex gap-6 flex-col items-center justify-center w-full h-[auto] p-8">
+            <h1 class="text-5xl font-bold">ABOUT US</h1>
+            <p class="w-[100%] text-zinc-700 font-semibold text-xl text-center">At Vainkuntha Computer Institute, we are dedicated to shaping the future of technology by providing top-notch education and training in the ever-evolving field of computer fields.</p>
+            <a href="#" class="bg-blue-600 py-2 text-sm px-4 text-white rounded-xl">🎉 Best of luck for your new journey 🎉</a>
+        </div>
+
+        <div class="content w-full p-8 h-[auto] bg-blue-500/90">
+            <h1 class="text-5xl font-bold text-white">Contact Us.</h1>
+            <form class="flex mt-8 flex-col gap-2">
+                <input id="name" class="h-[40px] px-4 rounded-xl outline-none" placeholder="Your name" type="text">
+                <input id="email" class="h-[40px] px-4 rounded-xl outline-none" placeholder="Your email" type="email">
+                <textarea id="message" class="h-[300px] p-4 rounded-xl outline-none" placeholder="Say something about yourself"></textarea>
+                <input onclick="Submit()" class="w-[fit-content] bg-green-600 text-white py-2 px-4 rounded-xl cursor-pointer" type="button" value="Send ✔">
+            </form>
+        </div>
+
+        <div id="social" class="social w-full flex flex-col items-center justify-center p-8 gap-6 h-[auto]">
+            <h1 class="text-6xl text-green-600 font-bold">We are Social</h1>
+            <div class="flex text-3xl gap-4">
+                <a href="https://www.youtube.com/channel/UCkeoap5C5vX3-T3Fl_nTEMA"><ion-icon class="text-red-500" name="logo-youtube"></ion-icon></a>
+                <a href="https://www.facebook.com/profile.php?id=61555830084811"><ion-icon class="text-blue-500" name="logo-facebook"></ion-icon></a>
+                <a href="https://www.instagram.com/ram_putra_yash/"><ion-icon class="text-pink-500" name="logo-instagram"></ion-icon></a>
+                <a href="https://in.pinterest.com/radhakrishna9990152824/"><ion-icon class="text-red-500" name="logo-pinterest"></ion-icon></a>
+                <a href="https://github.com/ramputra-yash"><ion-icon class="text-black" name="logo-github"></ion-icon></a>
+            </div>
+        </div>
+
+        <div class="footer flex flex-col p-8 items-center gap-9 justify-center w-full h-[300px] bg-green-600/80">
+            <button class="join_btn text-5xl border-[2px] border-white text-white py-10 rounded-full px-12">Join Us Soon!</button>
+            <hr class="bg-zinc-100 border-none outline-none w-full h-[2px]">
+            <p class="text-white text-xl">© 2024 Vaikuntha Computer Education, Inc. All rights reserved.</p>
+        </div>
+
+    </div>
+</body>
+<script>
+    const menu = document.querySelector('.menu');
+    const menuBox = document.querySelector('.links');
+
+    menu.addEventListener('click',() => {
+        menu.classList.toggle('open');
+        menuBox.classList.toggle('open');
+    })
+
+    menuBox.addEventListener('click', (e) => {
+        if(e.target.tagName === "A") {
+            menuBox.classList.remove('open');
+            menu.classList.remove('open');
+        }
+    })
+
+    function Submit() {
+        var params = {
+            from_name: document.getElementById('name').value,
+            email_id: document.getElementById('email').value,
+            message: document.getElementById('message').value
+        }
+        emailjs.send("service_lnryx59", "template_dvgmphs", params).then((res) => {
+            alert('Message send Successfully !', res.status);
+        }).then(() => {
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('message').value = '';
+        })
+
+    }
+
+</script>
+</html>
